@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 19, 2026 (version 1.2.2)
+Last updated: October 19, 2026 (version 1.2.3)
 
 ## The short version
 
@@ -70,7 +70,6 @@ so one org's data is never shown in another:
 | Snapshots | the members of one group or application at the moment you took it: each person's Okta id, name and login | you took a snapshot, to compare with later |
 | Access reviews | the people and access under review, your decisions, and your comments | you started a review |
 | Privileged applications | which applications you marked as privileged | you marked them |
-| Certificate check | how many signing certificates are expired or expiring, and the names of the three that expire soonest | you, or the home screen, ran the check |
 | Since you last looked | the counts on the home screen the last time you saw it, so it can show what changed | you opened the home screen |
 
 **Screens kept so they show at once, per org.** So that the home screen,
@@ -84,12 +83,13 @@ answer it read:
 | Applications | each application's name, label, status, sign-on mode and provisioning features |
 | Group rules | each rule's name, status, condition and the groups it assigns to |
 | Where a group is pushed | for each of the last 200 groups whose push mappings it read: which applications push it, the group each one writes to, by name, each mapping's status, last push and last error, Okta's count of its mappings, and which applications it is assigned to. Kept with them, once per org: the name, status, sign-on mode and features of each application able to push a group |
-| Certificates | each signing application's and SAML identity provider's name and status, the id of the certificate it uses, and that certificate's expiry date. Never the certificate or any other part of a key |
+| Certificates | each signing application's and SAML identity provider's name and status, the id of the certificate it uses, that certificate's expiry date, and when it was read. Never the certificate or any other part of a key |
 | The home screen | what each card last showed: its count, title and the up to three people, applications or objects it names, such as who is locked out, who was granted an admin role, or who is assigned a privileged application directly, by name and username. And the tenant's counts and the week of sign-in failures by day |
 
 Only the home screen names people, and only the few its cards show. No member
 list or profile is kept this way. Anything older than fifteen minutes is read
-again from Okta in the background and replaced. **Sync** beside each list, and
+again from Okta in the background and replaced, except a certificate's expiry
+date, which changes only when somebody rotates it and is read again after a day. **Sync** beside each list, and
 **Refresh** on the home screen, read it from Okta at once. The panel's refresh
 button deletes all of these, and a list is kept only while it is smaller than a
 fixed size.
