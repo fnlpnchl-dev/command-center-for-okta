@@ -1,7 +1,7 @@
 # The public pages for the Chrome Web Store listing: the landing page and the
 # privacy policy. tools/store/publish-site.sh copies this folder, with
 # PRIVACY.md as privacy.md, into the public repository
-# fenilpanchal0905/command-center-for-okta, whose GitHub Pages builds them.
+# fnlpnchl-dev/command-center-for-okta, whose GitHub Pages builds them.
 # The policy has one source: PRIVACY.md, here.
 title: Command Center for Okta
 description: A read-only side panel for Okta administrators, by Fenil Panchal.

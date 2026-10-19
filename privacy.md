@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 19, 2026 (version 1.2.0)
+Last updated: October 19, 2026 (version 1.2.2)
 
 ## The short version
 
@@ -14,9 +14,9 @@ makes goes to your own Okta organization, from your own browser, using the Okta
 session you are already signed in to.
 
 What you choose to keep, such as notes, snapshots and access reviews, stays in
-your browser on this computer. So do the lists of groups, applications and
-group rules, and the answers to where each group is pushed, that it keeps so
-they show at once. The developer cannot see any of it, because it never leaves
+your browser on this computer. So does what it keeps so screens show at once:
+the lists of groups, applications and group rules, where each group is pushed,
+the certificate check, and what the home screen last showed. The developer cannot see any of it, because it never leaves
 your machine.
 
 ## What the extension reads
@@ -73,9 +73,10 @@ so one org's data is never shown in another:
 | Certificate check | how many signing certificates are expired or expiring, and the names of the three that expire soonest | you, or the home screen, ran the check |
 | Since you last looked | the counts on the home screen the last time you saw it, so it can show what changed | you opened the home screen |
 
-**Lists kept so they show at once, per org.** So that Groups, Applications and
-where a group is pushed show straight away after a reload or in a new session,
-the extension keeps the last answer it read:
+**Screens kept so they show at once, per org.** So that the home screen,
+Groups, Applications, Rules, Certificates and where a group is pushed show
+straight away after a reload or in a new session, the extension keeps the last
+answer it read:
 
 | What | What it holds |
 | --- | --- |
@@ -83,12 +84,15 @@ the extension keeps the last answer it read:
 | Applications | each application's name, label, status, sign-on mode and provisioning features |
 | Group rules | each rule's name, status, condition and the groups it assigns to |
 | Where a group is pushed | for each of the last 200 groups whose push mappings it read: which applications push it, the group each one writes to, by name, each mapping's status, last push and last error, Okta's count of its mappings, and which applications it is assigned to. Kept with them, once per org: the name, status, sign-on mode and features of each application able to push a group |
+| Certificates | each signing application's and SAML identity provider's name and status, the id of the certificate it uses, and that certificate's expiry date. Never the certificate or any other part of a key |
+| The home screen | what each card last showed: its count, title and the up to three people, applications or objects it names, such as who is locked out, who was granted an admin role, or who is assigned a privileged application directly, by name and username. And the tenant's counts and the week of sign-in failures by day |
 
-No member list, profile or person is kept this way. Anything older than
-fifteen minutes is read again from Okta in the background and replaced, and
-**Sync** beside each one reads it from Okta at once. The panel's refresh button
-deletes all of these, and a list is kept only while it is smaller than a fixed
-size.
+Only the home screen names people, and only the few its cards show. No member
+list or profile is kept this way. Anything older than fifteen minutes is read
+again from Okta in the background and replaced. **Sync** beside each list, and
+**Refresh** on the home screen, read it from Okta at once. The panel's refresh
+button deletes all of these, and a list is kept only while it is smaller than a
+fixed size.
 
 You can delete any note, snapshot or access review from the panel, and stop
 watching anything you watch. Removing the extension from Chrome deletes
@@ -157,7 +161,7 @@ inside the extension package.
 
 | Permission | Why |
 | --- | --- |
-| `storage` | keep your preferences, the notes, watchlist, snapshots and reviews you choose to keep, and the lists of groups, applications and rules, and where groups are pushed, kept so they show at once, as listed above |
+| `storage` | keep your preferences, the notes, watchlist, snapshots and reviews you choose to keep, and the screens kept so they show at once, as listed above |
 | `sidePanel` | the interface is a Chrome side panel, so it can sit beside the console |
 | `scripting` | put the console-page script back into an admin tab that was already open, for example after the extension updates |
 | host access to the admin console paths above | follow which console screen you are on, and issue the same-origin read-only requests described above |
