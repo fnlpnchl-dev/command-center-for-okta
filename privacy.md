@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 19, 2026 (version 1.2.3)
+Last updated: October 20, 2026 (version 1.3.0)
 
 ## The short version
 
@@ -68,6 +68,7 @@ so one org's data is never shown in another:
 | Notes | the text you write, and which person, group, application or rule it is about | you wrote a note |
 | Watchlist | the groups and applications you watch, and their member counts when last checked | you chose to watch one |
 | Snapshots | the members of one group or application at the moment you took it: each person's Okta id, name and login | you took a snapshot, to compare with later |
+| Saved comparisons | up to 30 comparisons: which people, groups, applications, rules, policies or roles were compared, by Okta id and name, and what each held when you saved it, by Okta id only: its groups, applications, members or permissions | you saved a comparison, to see later what has changed |
 | Access reviews | the people and access under review, your decisions, and your comments | you started a review |
 | Privileged applications | which applications you marked as privileged | you marked them |
 | Since you last looked | the counts on the home screen the last time you saw it, so it can show what changed | you opened the home screen |
