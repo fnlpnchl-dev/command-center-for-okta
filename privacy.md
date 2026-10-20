@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 20, 2026 (version 1.5.0)
+Last updated: October 20, 2026 (version 1.5.1)
 
 ## The short version
 
@@ -123,7 +123,10 @@ goes only where your browser puts downloads.
 background worker so the same data is not read twice and your org's Okta rate
 limits are respected. Live activity keeps the events it has shown in memory
 too, and the launcher's card for each of the last 60 people, groups and
-applications you opened is kept for three minutes. This is ordinary memory, never written to disk, and Chrome discards it when
+applications you opened is kept for three minutes. For a group a rule feeds,
+how each person's membership arrived (by a rule, or by hand) is kept for an
+hour, under that org's address, so a large group can be checked a few hundred
+people at a time: Okta answers that one membership at a time. This is ordinary memory, never written to disk, and Chrome discards it when
 the panel closes or the worker stops.
 
 ## Credentials
