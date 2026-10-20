@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 20, 2026 (version 1.4.0)
+Last updated: October 20, 2026 (version 1.5.0)
 
 ## The short version
 
@@ -26,6 +26,7 @@ requests to your organization's Okta API on your behalf. Depending on which
 screen you open, that can include:
 
 - user profiles, status, and sign-in history
+- the kinds of factor people have enrolled (never a secret or a phone number)
 - group definitions, membership, and group rules
 - applications, their assignments, and their provisioning settings
 - authentication policies and their rules
@@ -34,6 +35,13 @@ screen you open, that can include:
 
 This is your own Okta directory data, read with your own permissions. The
 extension cannot see anything your Okta administrator role cannot already see.
+
+When you open a person, a group or an application in the admin console, the
+extension reads a short summary of it for the launcher's card, in the
+background, at the lowest priority: a few requests, plus what it already keeps.
+**Have the card ready before it is opened**, in Settings, turns this off, and the
+card is then read only when you open the launcher. What you type in the
+launcher's search is sent only to your own Okta org, as a search.
 
 If you turn on **Live activity**, the extension also reads your org's system log
 about once a minute while the panel is open, to show admin changes as they
@@ -56,6 +64,8 @@ computer, in this browser profile. None of it is sent anywhere.
 | `syncFollow` | whether the panel follows the admin console |
 | `syncPush` | whether the console follows the panel |
 | `consoleActions` | whether the launcher is shown in the admin console |
+| `consoleWarm` | whether the launcher's card is read before it is opened |
+| `consolePos` | which corner of the admin console the launcher sits in |
 | `liveStrip` | whether Live activity is on, how often it checks, and when it pauses |
 | `exportColumns`, `exportPreamble` | the columns you chose for exports, and whether files start with a description of themselves |
 | `schemaVersion` | the layout of this storage, so an update can carry it forward |
@@ -112,7 +122,8 @@ goes only where your browser puts downloads.
 **In memory, briefly.** Okta API answers are cached inside the extension's
 background worker so the same data is not read twice and your org's Okta rate
 limits are respected. Live activity keeps the events it has shown in memory
-too. This is ordinary memory, never written to disk, and Chrome discards it when
+too, and the launcher's card for each of the last 60 people, groups and
+applications you opened is kept for three minutes. This is ordinary memory, never written to disk, and Chrome discards it when
 the panel closes or the worker stops.
 
 ## Credentials
