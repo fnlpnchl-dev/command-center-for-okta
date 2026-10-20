@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 20, 2026 (version 1.3.0)
+Last updated: October 20, 2026 (version 1.4.0)
 
 ## The short version
 
@@ -68,6 +68,10 @@ so one org's data is never shown in another:
 | Notes | the text you write, and which person, group, application or rule it is about | you wrote a note |
 | Watchlist | the groups and applications you watch, and their member counts when last checked | you chose to watch one |
 | Snapshots | the members of one group or application at the moment you took it: each person's Okta id, name and login | you took a snapshot, to compare with later |
+| Stale access checks | for each of the last 24 checks: when, at which threshold, and how many were found; and which people, by the kind of finding and their Okta id only, with when each was first found | you ran a check, so the next one can say what is new, what was resolved, and how long the rest have been open |
+| Exceptions | for a direct assignment: the person and the application, by name and Okta id, the reason you wrote, the end date you gave, and who wrote it and when; up to 500 | you recorded why an assignment exists |
+| Stale access settings | the profile attribute that holds an end date, and up to 50 pairs of applications or groups you said nobody should hold together, by name and Okta id | you named them |
+| Verified removals | for each of up to 50 reviews: the people a Remove decision named, by name and Okta id, whether Okta still assigned them their applications (by id), and when that was checked | you pressed Verify |
 | Saved comparisons | up to 30 comparisons: which people, groups, applications, rules, policies or roles were compared, by Okta id and name, and what each held when you saved it, by Okta id only: its groups, applications, members or permissions | you saved a comparison, to see later what has changed |
 | Access reviews | the people and access under review, your decisions, and your comments | you started a review |
 | Privileged applications | which applications you marked as privileged | you marked them |
