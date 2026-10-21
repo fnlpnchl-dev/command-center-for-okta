@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 20, 2026 (version 1.5.1)
+Last updated: October 21, 2026 (version 1.6.0)
 
 ## The short version
 
@@ -29,7 +29,7 @@ screen you open, that can include:
 - the kinds of factor people have enrolled (never a secret or a phone number)
 - group definitions, membership, and group rules
 - applications, their assignments, and their provisioning settings
-- authentication policies and their rules
+- authentication policies and their rules, and the network zones and device assurance policies their rules name
 - administrator role assignments
 - system log events
 
