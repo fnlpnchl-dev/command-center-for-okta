@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 21, 2026 (version 1.6.0)
+Last updated: October 21, 2026 (version 1.7.0)
 
 ## The short version
 
@@ -29,7 +29,8 @@ screen you open, that can include:
 - the kinds of factor people have enrolled (never a secret or a phone number)
 - group definitions, membership, and group rules
 - applications, their assignments, and their provisioning settings
-- authentication policies and their rules, and the network zones and device assurance policies their rules name
+- authentication policies and their rules, the applications each is assigned to, and the network zones, device assurance policies, user types and authenticators their rules name
+- event hooks and inline hooks, and API tokens with the admin roles of the people who own them
 - administrator role assignments
 - system log events
 
@@ -42,6 +43,8 @@ background, at the lowest priority: a few requests, plus what it already keeps.
 **Have the card ready before it is opened**, in Settings, turns this off, and the
 card is then read only when you open the launcher. What you type in the
 launcher's search is sent only to your own Okta org, as a search.
+What you type into Workflows › **Build a flow** is not sent anywhere, not
+even to Okta: it is read in the panel and forgotten when you leave the screen.
 
 If you turn on **Live activity**, the extension also reads your org's system log
 about once a minute while the panel is open, to show admin changes as they
@@ -66,6 +69,7 @@ computer, in this browser profile. None of it is sent anywhere.
 | `consoleActions` | whether the launcher is shown in the admin console |
 | `consoleWarm` | whether the launcher's card is read before it is opened |
 | `consolePos` | which corner of the admin console the launcher sits in |
+| `workflowChecks` | which follow-up checks Workflows › Health runs |
 | `liveStrip` | whether Live activity is on, how often it checks, and when it pauses |
 | `exportColumns`, `exportPreamble` | the columns you chose for exports, and whether files start with a description of themselves |
 | `schemaVersion` | the layout of this storage, so an update can carry it forward |
