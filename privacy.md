@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 21, 2026 (version 1.7.0)
+Last updated: October 23, 2026 (version 1.9.0)
 
 ## The short version
 
@@ -29,7 +29,8 @@ screen you open, that can include:
 - the kinds of factor people have enrolled (never a secret or a phone number)
 - group definitions, membership, and group rules
 - applications, their assignments, and their provisioning settings
-- authentication policies and their rules, the applications each is assigned to, and the network zones, device assurance policies, user types and authenticators their rules name
+- policies and their rules, the applications each is assigned to, and the device assurance policies, user types and authenticators their rules name
+- network zones: the addresses, countries and networks each holds
 - event hooks and inline hooks, and API tokens with the admin roles of the people who own them
 - administrator role assignments
 - system log events
