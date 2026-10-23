@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 23, 2026 (version 1.11.0)
+Last updated: October 23, 2026 (version 1.11.1)
 
 ## The short version
 
@@ -103,7 +103,7 @@ answer it read:
 | --- | --- |
 | Groups | each group's name, description, type, and member, application and push mapping counts |
 | Applications | each application's name, label, status, sign-on mode and provisioning features |
-| Group rules | each rule's name, status, condition and the groups it assigns to |
+| Group rules | each rule's name, status, condition and the groups it assigns to, with the names of the groups it names |
 | Where a group is pushed | for each of the last 200 groups whose push mappings it read: which applications push it, the group each one writes to, by name, each mapping's status, last push and last error, Okta's count of its mappings, and which applications it is assigned to. Kept with them, once per org: the name, status, sign-on mode and features of each application able to push a group |
 | Certificates | each signing application's and SAML identity provider's name and status, the id of the certificate it uses, that certificate's expiry date, and when it was read. Never the certificate or any other part of a key |
 | The home screen | what each card last showed: its count, title and the up to three people, applications or objects it names, such as who is locked out, who was granted an admin role, or who is assigned a privileged application directly, by name and username. And the tenant's counts and the week of sign-in failures by day |
