@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 23, 2026 (version 1.9.1)
+Last updated: October 23, 2026 (version 1.11.0)
 
 ## The short version
 
@@ -109,9 +109,12 @@ answer it read:
 | The home screen | what each card last showed: its count, title and the up to three people, applications or objects it names, such as who is locked out, who was granted an admin role, or who is assigned a privileged application directly, by name and username. And the tenant's counts and the week of sign-in failures by day |
 
 Only the home screen names people, and only the few its cards show. No member
-list or profile is kept this way. Anything older than fifteen minutes is read
-again from Okta in the background and replaced, except a certificate's expiry
-date, which changes only when somebody rotates it and is read again after a day. **Sync** beside each list, and
+list or profile is kept this way. The groups, applications and group rules stay
+as they were read until you press **Sync** beside them, unless Okta's rate limit
+cut that read short, when they are read again at the next visit. The rest is
+read again from Okta in the background once older than fifteen minutes, and
+replaced, except a certificate's expiry date, which changes only when somebody
+rotates it and is read again after a day. **Sync** beside each list, and
 **Refresh** on the home screen, read it from Okta at once. The panel's refresh
 button deletes all of these, and a list is kept only while it is smaller than a
 fixed size.
