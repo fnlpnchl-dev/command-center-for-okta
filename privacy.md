@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 23, 2026 (version 1.9.0)
+Last updated: October 23, 2026 (version 1.9.1)
 
 ## The short version
 
@@ -64,6 +64,8 @@ computer, in this browser profile. None of it is sent anywhere.
 | `theme` | light or dark |
 | `density` | row spacing |
 | `zoom` | text size |
+| `timeFormat` | whether times are written 12-hour or 24-hour |
+| `timeZone` | the time zone Okta's times are written in |
 | `railPinned` | whether the navigation rail is pinned open |
 | `syncFollow` | whether the panel follows the admin console |
 | `syncPush` | whether the console follows the panel |
