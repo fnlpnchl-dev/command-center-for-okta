@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 23, 2026 (version 1.11.1)
+Last updated: October 27, 2026 (version 1.12.0)
 
 ## The short version
 
@@ -102,7 +102,7 @@ answer it read:
 | What | What it holds |
 | --- | --- |
 | Groups | each group's name, description, type, and member, application and push mapping counts |
-| Applications | each application's name, label, status, sign-on mode and provisioning features |
+| Applications | each application's name, label, status, sign-on mode and provisioning features, the format it makes a person's username in, and the NameID a SAML application of its own sends. Configuration only, nothing about any person |
 | Group rules | each rule's name, status, condition and the groups it assigns to, with the names of the groups it names |
 | Where a group is pushed | for each of the last 200 groups whose push mappings it read: which applications push it, the group each one writes to, by name, each mapping's status, last push and last error, Okta's count of its mappings, and which applications it is assigned to. Kept with them, once per org: the name, status, sign-on mode and features of each application able to push a group |
 | Certificates | each signing application's and SAML identity provider's name and status, the id of the certificate it uses, that certificate's expiry date, and when it was read. Never the certificate or any other part of a key |
