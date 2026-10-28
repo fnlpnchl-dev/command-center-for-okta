@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 27, 2026 (version 1.13.0)
+Last updated: October 28, 2026 (version 1.14.0)
 
 ## The short version
 
@@ -16,9 +16,10 @@ session you are already signed in to.
 What you choose to keep, such as notes, snapshots and access reviews, stays in
 your browser on this computer. So does what it keeps so screens show at once:
 the lists of groups, applications and group rules, where each group is pushed,
-the certificate check, and what the home screen last showed. The people
-assigned to an application are held only in the browser's memory while Chrome
-runs, never on disk. The developer cannot see any of it, because it never leaves
+the certificate check, and what the home screen last showed. Lists of people
+and their access, such as an application's users, a group's members, or one
+person's groups and applications, are held only in the browser's memory while
+Chrome runs, never on disk. The developer cannot see any of it, because it never leaves
 your machine.
 
 ## What the extension reads
@@ -121,20 +122,23 @@ rotates it and is read again after a day. **Sync** beside each list, and
 button deletes all of these, and a list is kept only while it is smaller than a
 fixed size.
 
-**Held in memory while Chrome runs, never on disk.** So that an application's
-Users tab shows at once when it is opened again, the extension holds what it
-last read there in `chrome.storage.session`. That is the browser's memory: it
-is never written to disk, and Chrome clears it when it closes. It holds, for
-the applications whose Users tab you opened:
+**Held in memory while Chrome runs, never on disk.** So that the screens that
+list people show at once when they are opened again, the extension holds what
+it last read there in `chrome.storage.session`. That is the browser's memory:
+it is never written to disk, and Chrome clears it when it closes. It holds:
 
-- each person assigned: their name, username and app username, how they are
-  assigned, its status, what the assignment sets inside the application, and
-  whether their app username matches the application's format;
-- when you checked its groups, the people in them who are not assigned it, by
-  name and username, with the group.
+- for an application whose Users tab you opened, each person assigned: their
+  name, username and app username, how they are assigned, its status, what the
+  assignment sets inside the application, and whether their app username
+  matches the application's format. And, when you checked its groups, the
+  people in them who are not assigned it, by name and username, with the group;
+- for a group whose Members tab you opened, each member's name, username,
+  email, department, status and last sign-in;
+- for a person you opened, the groups they are in and the applications they
+  are assigned, with what each assignment sets.
 
-**Sync** on the tab reads it from Okta again, and the panel's refresh button
-lets all of it go. An application with too many people to hold is not held, and
+**Sync** on each of those reads it from Okta again, and the panel's refresh
+button lets all of it go. An application with too many people to hold is not held, and
 when room is needed the one opened longest ago goes first.
 
 You can delete any note, snapshot or access review from the panel, and stop
