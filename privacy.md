@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 29, 2026 (version 1.17.0)
+Last updated: October 29, 2026 (version 1.17.2)
 
 ## The short version
 
@@ -30,7 +30,7 @@ your machine.
 
 ## What the extension reads
 
-While you have your Okta admin console open, the extension issues read-only
+While you have your Okta Admin Console open, the extension issues read-only
 requests to your organization's Okta API on your behalf. Depending on which
 screen you open, that can include:
 
@@ -42,12 +42,12 @@ screen you open, that can include:
 - network zones: the addresses, countries and networks each holds
 - event hooks and inline hooks, and API tokens with the admin roles of the people who own them
 - administrator role assignments
-- system log events
+- System Log events
 
 This is your own Okta directory data, read with your own permissions. The
 extension cannot see anything your Okta administrator role cannot already see.
 
-When you open a person, a group or an application in the admin console, the
+When you open a person, a group or an application in the Admin Console, the
 extension reads a short summary of it for the launcher's card, in the
 background, at the lowest priority: a few requests, plus what it already keeps.
 **Have the card ready before it is opened**, in Settings, turns this off, and the
@@ -56,10 +56,16 @@ launcher's search is sent only to your own Okta org, as a search.
 What you type into Workflows › **Build a flow** is not sent anywhere, not
 even to Okta: it is read in the panel and forgotten when you leave the screen.
 
-If you turn on **Live activity**, the extension also reads your org's system log
+If you turn on **Live activity**, the extension also reads your org's System Log
 about once a minute while the panel is open, to show admin changes as they
 happen. It is off until you turn it on, and it pauses whenever the panel is
 hidden, the browser is offline, or your org's rate limit runs low.
+
+If you watch a group or an application, the extension reads your org's System
+Log every 20 seconds while the panel is on screen, for changes to the members
+of what you watch, and the home checks each watched one in full every 5
+minutes. Nothing is read for the watchlist while the panel is hidden, or when
+nothing is watched.
 
 ## What the extension stores
 
@@ -76,11 +82,11 @@ computer, in this browser profile. None of it is sent anywhere.
 | `timeFormat` | whether times are written 12-hour or 24-hour |
 | `timeZone` | the time zone Okta's times are written in |
 | `railPinned` | whether the navigation rail is pinned open |
-| `syncFollow` | whether the panel follows the admin console |
+| `syncFollow` | whether the panel follows the Admin Console |
 | `syncPush` | whether the console follows the panel |
-| `consoleActions` | whether the launcher is shown in the admin console |
+| `consoleActions` | whether the launcher is shown in the Admin Console |
 | `consoleWarm` | whether the launcher's card is read before it is opened |
-| `consolePos` | which corner of the admin console the launcher sits in |
+| `consolePos` | which corner of the Admin Console the launcher sits in |
 | `workflowChecks` | which follow-up checks Workflows › Health runs |
 | `liveStrip` | whether Live activity is on, how often it checks, and when it pauses |
 | `exportColumns`, `exportPreamble` | the columns you chose for exports, and whether files start with a description of themselves |
@@ -214,13 +220,13 @@ The extension never asks for, receives, or stores an Okta password, API token,
 client secret, or private key.
 
 It works by reusing the session you already have. A small script running on
-your admin console page reads the anti-forgery token that the console itself
+your Admin Console page reads the anti-forgery token that the console itself
 places in the page, and issues same-origin requests with your existing session
 cookie. Chrome keeps that cookie. The extension never reads it, and could not
 send it anywhere, because the requests go only to your own Okta organization.
 
 Because the reads use your session, they appear in your Okta System Log
-attributed to you, exactly as if you had clicked through the admin console
+attributed to you, exactly as if you had clicked through the Admin Console
 yourself. That is deliberate: your organization's audit trail stays accurate.
 
 ## Read-only
@@ -240,7 +246,7 @@ are for you to build.
 
 ## Where the extension runs
 
-Only on your Okta admin console, and only on these paths:
+Only on your Okta Admin Console, and only on these paths:
 
 ```
 https://*.okta.com/admin/*         https://*.okta.com/report*
@@ -268,7 +274,7 @@ direction, and nothing else.
 | `storage` | keep your preferences, the notes, watchlist, snapshots and reviews you choose to keep, and the screens kept so they show at once, as listed above |
 | `sidePanel` | the interface is a Chrome side panel, so it can sit beside the console |
 | `scripting` | put the console-page script back into an admin tab that was already open, for example after the extension updates |
-| host access to the admin console paths above | follow which console screen you are on, and issue the same-origin read-only requests described above |
+| host access to the Admin Console paths above | follow which console screen you are on, and issue the same-origin read-only requests described above |
 | optional host access (`https://*/*`, `http://localhost/*`, `http://127.0.0.1/*`) | asked for only when you connect a model to the Assistant, and only for that endpoint's address; given back when you press Forget. Nothing is asked for at install |
 
 ## Children
