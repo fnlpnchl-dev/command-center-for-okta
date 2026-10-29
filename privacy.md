@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 28, 2026 (version 1.14.0)
+Last updated: October 29, 2026 (version 1.17.0)
 
 ## The short version
 
@@ -12,6 +12,12 @@ The extension sends nothing to its developer or to anyone else. It has no
 server, no analytics, no telemetry, and no crash reporting. Every request it
 makes goes to your own Okta organization, from your own browser, using the Okta
 session you are already signed in to.
+
+The one exception is the Assistant, which is off until you connect a model of
+your own to it. Then what you type there is sent to the endpoint you chose,
+with instructions naming what the extension can read and your org's user
+profile attribute names. No person, group member or log entry is sent: the
+extension reads Okta itself. See [The Assistant](#the-assistant-when-you-connect-a-model).
 
 What you choose to keep, such as notes, snapshots and access reviews, stays in
 your browser on this computer. So does what it keeps so screens show at once:
@@ -78,6 +84,8 @@ computer, in this browser profile. None of it is sent anywhere.
 | `workflowChecks` | which follow-up checks Workflows › Health runs |
 | `liveStrip` | whether Live activity is on, how often it checks, and when it pauses |
 | `exportColumns`, `exportPreamble` | the columns you chose for exports, and whether files start with a description of themselves |
+| `assistant` | the Assistant's endpoint, model name, and how its key is sent, when you connect a model |
+| `assistantKeyKept` | the Assistant's key, only if you tick **Remember the key on this computer**; otherwise it is held in memory, below |
 | `schemaVersion` | the layout of this storage, so an update can carry it forward |
 
 **What you choose to keep, per org.** Each is stored under that org's address,
@@ -96,6 +104,7 @@ so one org's data is never shown in another:
 | Access reviews | the people and access under review, your decisions, and your comments | you started a review |
 | Privileged applications | which applications you marked as privileged | you marked them |
 | Since you last looked | the counts on the home screen the last time you saw it, so it can show what changed | you opened the home screen |
+| Saved reports | up to 50 Assistant reports: the words you asked with, and the plan, which is the reads it makes (searches, and groups and applications by the name you used or the Okta id you chose) and the steps that combine them. Never what a report found | you pressed **Save as a report**, so it runs again without the model |
 
 **Screens kept so they show at once, per org.** So that the home screen,
 Groups, Applications, Rules, Certificates and where a group is pushed show
@@ -137,6 +146,9 @@ it is never written to disk, and Chrome clears it when it closes. It holds:
 - for a person you opened, the groups they are in and the applications they
   are assigned, with what each assignment sets.
 
+The Assistant's key is held there too, unless you ask for it to be
+remembered on this computer.
+
 **Sync** on each of those reads it from Okta again, and the panel's refresh
 button lets all of it go. An application with too many people to hold is not held, and
 when room is needed the one opened longest ago goes first.
@@ -160,6 +172,41 @@ how each person's membership arrived (by a rule, or by hand) is kept for an
 hour, under that org's address, so a large group can be checked a few hundred
 people at a time: Okta answers that one membership at a time. This is ordinary memory, never written to disk, and Chrome discards it when
 the panel closes or the worker stops.
+
+## The Assistant, when you connect a model
+
+The Assistant is off until you connect a model to it: an endpoint that takes
+a Chat Completions request, the name of a model, and a key if the endpoint
+needs one. The endpoint is yours to choose: an AI provider's API, your
+company's gateway, or a model running on your own computer. The extension has
+no server of its own in between.
+
+**What is sent, each time you press Ask**, and only to that endpoint:
+- the words you typed;
+- instructions that list the read-only questions the extension can run, the
+  shapes of answer it accepts, today's date, and your org's user profile
+  attribute names (such as `department` or `employeeType`), read from Okta's
+  user schema.
+
+**What is never sent:** any person, group member, application assignment, log
+entry, or anything else the extension has read from Okta. The model answers
+with a plan. The extension checks it, says it back in its own words, and runs
+it against Okta itself, read only, through the same path as every other screen.
+**What was sent to the model**, under each answer, shows the exact text.
+
+What you type is your own: if you type a person's name, it is sent as you
+typed it.
+
+**The key** is held in the browser's memory until Chrome closes, unless you
+tick **Remember the key on this computer**, which writes it to the extension's
+storage on this computer. It is sent only to the endpoint, in the header you
+chose.
+
+**Forget** removes the endpoint, the model, the key, and Chrome's permission to
+reach that address. Saved reports stay; they run without the model.
+
+What the endpoint does with a request is set by whoever runs it, under your
+agreement with them. The developer of this extension has no access to it.
 
 ## Credentials
 
@@ -187,7 +234,9 @@ independent places:
 
 The rule builder and policy builder validate and explain what you write and
 produce what Okta would need, but they cannot save. You copy the result into
-Okta yourself.
+Okta yourself. The Assistant is held to the same: its plans run through the same
+read-only path, its rules open in the simulator, and its Workflows build sheets
+are for you to build.
 
 ## Where the extension runs
 
@@ -204,9 +253,13 @@ website, and it cannot see which other sites you visit.
 
 ## Third parties
 
-There are none. No data is sold, shared, or transferred to anyone. No
+There are none of the extension's choosing. No data is sold or shared. No
 third-party code, library, font, or service is loaded at runtime. All code ships
 inside the extension package.
+
+When you connect a model to the Assistant, the endpoint you chose receives what
+is described in [The Assistant](#the-assistant-when-you-connect-a-model), at your
+direction, and nothing else.
 
 ## Permissions, and why each one exists
 
@@ -216,6 +269,7 @@ inside the extension package.
 | `sidePanel` | the interface is a Chrome side panel, so it can sit beside the console |
 | `scripting` | put the console-page script back into an admin tab that was already open, for example after the extension updates |
 | host access to the admin console paths above | follow which console screen you are on, and issue the same-origin read-only requests described above |
+| optional host access (`https://*/*`, `http://localhost/*`, `http://127.0.0.1/*`) | asked for only when you connect a model to the Assistant, and only for that endpoint's address; given back when you press Forget. Nothing is asked for at install |
 
 ## Children
 
