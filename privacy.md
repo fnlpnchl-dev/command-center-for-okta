@@ -4,7 +4,7 @@
 An independent extension. Not affiliated with, endorsed by, or sponsored by
 Okta, Inc. Okta is a trademark of Okta, Inc.
 
-Last updated: October 29, 2026 (version 1.17.2)
+Last updated: October 29, 2026 (version 1.18.0)
 
 ## The short version
 
@@ -89,6 +89,7 @@ computer, in this browser profile. None of it is sent anywhere.
 | `consolePos` | which corner of the Admin Console the launcher sits in |
 | `workflowChecks` | which follow-up checks Workflows › Health runs |
 | `liveStrip` | whether Live activity is on, how often it checks, and when it pauses |
+| `massThreshold` | how many of one kind of change within an hour the home calls a mass change |
 | `exportColumns`, `exportPreamble` | the columns you chose for exports, and whether files start with a description of themselves |
 | `assistant` | the Assistant's endpoint, model name, and how its key is sent, when you connect a model |
 | `assistantKeyKept` | the Assistant's key, only if you tick **Remember the key on this computer**; otherwise it is held in memory, below |
@@ -121,10 +122,10 @@ answer it read:
 | --- | --- |
 | Groups | each group's name, description, type, and member, application and push mapping counts |
 | Applications | each application's name, label, status, sign-on mode and provisioning features, the format it makes a person's username in, and the NameID a SAML application of its own sends. Configuration only, nothing about any person |
-| Group rules | each rule's name, status, condition and the groups it assigns to, with the names of the groups it names |
+| Group rules | each rule's name, status, condition and the groups it assigns to, when Okta created and last updated it, and how many people it excludes (never who), with the names of the groups it names |
 | Where a group is pushed | for each of the last 200 groups whose push mappings it read: which applications push it, the group each one writes to, by name, each mapping's status, last push and last error, Okta's count of its mappings, and which applications it is assigned to. Kept with them, once per org: the name, status, sign-on mode and features of each application able to push a group |
 | Certificates | each signing application's and SAML identity provider's name and status, the id of the certificate it uses, that certificate's expiry date, and when it was read. Never the certificate or any other part of a key |
-| The home screen | what each card last showed: its count, title and the up to three people, applications or objects it names, such as who is locked out, who was granted an admin role, or who is assigned a privileged application directly, by name and username. And the tenant's counts and the week of sign-in failures by day |
+| The home screen | what each card last showed: its count, title and the up to three people, applications or objects it names, such as who is locked out, who was granted an admin role, who made a mass change, or who is assigned a privileged application directly, by name and username. And the tenant's counts and the week of sign-in failures by day |
 
 Only the home screen names people, and only the few its cards show. No member
 list or profile is kept this way. The groups, applications and group rules stay
@@ -136,6 +137,18 @@ rotates it and is read again after a day. **Sync** beside each list, and
 **Refresh** on the home screen, read it from Okta at once. The panel's refresh
 button deletes all of these, and a list is kept only while it is smaller than a
 fixed size.
+
+**Kept as the group rules are read, per org.** Okta keeps no earlier version of
+a group rule, and its System Log records no edit to one. So that a rule's page
+can show what it said before it changed, each time the rules are read the
+extension compares each one with the copy it last read:
+
+| What | What it holds |
+| --- | --- |
+| Rule history | for each group rule, the copy last read (its name, status, condition, the groups it assigns to by Okta id, and how many people it excludes, never who), when it was first and last read, and up to 10 earlier versions, with when each change was seen |
+
+The panel's refresh button does not delete the rule history, since an earlier
+version cannot be read from Okta again. Removing the extension deletes it.
 
 **Held in memory while Chrome runs, never on disk.** So that the screens that
 list people show at once when they are opened again, the extension holds what
